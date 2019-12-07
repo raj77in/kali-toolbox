@@ -11,7 +11,6 @@ LABEL com.github.containers.toolbox="true" \
       summary="Base image for creating Fedora toolbox containers" \
       maintainer="Debarshi Ray <rishi@fedoraproject.org>"
 RUN apt update && apt install -y sudo libcap2-bin && useradd -m -G sudo amitag;
-COPY machine-id /etc/machine-id
 RUN touch /run/.containerenv
 COPY toolbox /usr/bin/toolbox
 COPY sudo /etc/sudoers.d/sudo
