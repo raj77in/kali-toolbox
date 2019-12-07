@@ -10,8 +10,10 @@ LABEL com.github.containers.toolbox="true" \
       usage="This image is meant to be used with the toolbox command" \
       summary="Base image for creating Fedora toolbox containers" \
       maintainer="Debarshi Ray <rishi@fedoraproject.org>"
-RUN apt update && apt install -y sudo libcap2-bin && useradd -m -G sudo amitag;
+COPY packages /
+RUN apt update && apt install -y sudo libcap2-bin $(</packages) && useradd -m -G sudo kali;
 RUN touch /run/.containerenv
 COPY toolbox /usr/bin/toolbox
 COPY sudo /etc/sudoers.d/sudo
+USER kali
 CMD /bin/sh
